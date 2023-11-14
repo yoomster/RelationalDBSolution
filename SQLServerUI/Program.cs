@@ -10,7 +10,9 @@ internal class Program
     {
         SqlCrud sql = new SqlCrud(GetConnectionString());
 
-        ReadAllContacts(sql);
+        //ReadAllContacts(sql);
+
+        ReadContact(sql, 1);
 
         Console.ReadLine();
 
@@ -26,6 +28,15 @@ internal class Program
             Console.WriteLine($"{row.Id}: {row.FirstName} {row.LastName}");
         }
     }
+
+
+    private static void ReadContact(SqlCrud sql, int contactId)
+    {
+        var contact = sql.GetFullContactById(contactId);
+
+        Console.WriteLine($"{contact.BasicInfo.Id}: {contact.BasicInfo.FirstName} {contact.BasicInfo.LastName}");
+    }
+
 
     //unit testing would be great here: test if the connection string is returned
     private static string GetConnectionString(string connectionStringName = "Default")

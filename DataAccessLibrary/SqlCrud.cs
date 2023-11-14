@@ -37,9 +37,21 @@ namespace DataAccessLibrary
                 return null;
             }
 
+            sql = @"select e.*, ce.*
+                    from dbo.EmailAddresses e
+                    inner join dbo.ContactEmail ce on ce.EmailAddressId = e.Id
+                    where ce.ContactID = @Id";
 
+            output.EmailAddresses = db.LoadData<EmailAddressModel, dynamic>(sql, new { Id = id }, _connectionString);
+
+            sql = @"select p.*
+                    from dbo.PhoneNumbers p
+                    inner join dbo.ContactPhone cp on cp.PhoneNumberId = p.Id
+                    where cp.ContactID = @Id";
+
+            output.PhoneNumbers = db.LoadData<PhoneNumberModel, dynamic>(sql, new { Id = id }, _connectionString);
 
             return output;
         }
-    }
+    }       
 }
