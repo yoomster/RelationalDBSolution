@@ -12,11 +12,34 @@ internal class Program
 
         //ReadAllContacts(sql);
 
-        //ReadContact(sql, 1);
+        ReadContact(sql, 3);
+        //CreateNewContact(sql);
+
 
         Console.ReadLine();
 
 
+    }
+
+    private static void CreateNewContact(SqlCrud sql)
+    {
+        FullContactModel user = new FullContactModel
+        {
+            BasicInfo = new BasicContactModel
+            {
+                FirstName = "Adam",
+                LastName = "Ak"
+            },
+        };
+
+        user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "adam@live.nl" });
+        user.EmailAddresses.Add(new EmailAddressModel { Id = 2, EmailAddress = "me@naomi.nl" });
+
+
+        user.PhoneNumbers.Add(new PhoneNumberModel { Id = 4, PhoneNumber = "0687654321" });
+        user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "049756246" });
+
+        sql.CreateContact(user);
     }
 
     private static void ReadAllContacts(SqlCrud sql)
@@ -29,7 +52,6 @@ internal class Program
         }
     }
 
-
     private static void ReadContact(SqlCrud sql, int contactId)
     {
         var contact = sql.GetFullContactById(contactId);
@@ -37,8 +59,7 @@ internal class Program
         Console.WriteLine($"{contact.BasicInfo.Id}: {contact.BasicInfo.FirstName} {contact.BasicInfo.LastName}");
     }
 
-
-    //unit testing would be great here: test if the connection string is returned
+    //unit testing could be great here: test if the connection string is returned
     private static string GetConnectionString(string connectionStringName = "Default")
     {
         string output = "";

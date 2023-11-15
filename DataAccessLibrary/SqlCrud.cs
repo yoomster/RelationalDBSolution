@@ -57,19 +57,16 @@ namespace DataAccessLibrary
 
         public void CreateContact(FullContactModel contact)
         {
-            //Save basic contact
             string sql = "insert into dbo.Contacts (FirstName, LastName) values (@FirstName, @LastName);";
             db.SaveData(sql, 
                         new {contact.BasicInfo.FirstName, contact.BasicInfo.LastName},
                         _connectionString);
 
-            //get Id number of contact
             sql = "select Id from dbo.Contacts where FirstName= @FirstName and LastName= @LastName;";
             int contactId = db.LoadData<IdLookUpModel, dynamic>(sql,
                 new { contact.BasicInfo.FirstName, contact.BasicInfo.LastName },
                 _connectionString).First().Id;
 
-            //identify is phone nr exists
             foreach(var phoneNumber in contact.PhoneNumbers)
             {
                 if (phoneNumber.Id== 0)
@@ -77,6 +74,7 @@ namespace DataAccessLibrary
                     sql = "insert into dbo.PhoneNumbers(PhoneNumber) values(@PhoneNumber); ";
                     db.SaveData(sql, new {phoneNumber.PhoneNumber}, _connectionString);
 
+                    sql = "select Id from dbo.PhoneNumbers where PhoneNumber = @PhoneNumber;";
                     phoneNumber.Id = db.LoadData<IdLookUpModel, dynamic>
                         (sql, new { phoneNumber.PhoneNumber },
                         _connectionString).First().Id;
@@ -84,10 +82,26 @@ namespace DataAccessLibrary
 
                 sql = "insert into dbo.ContactPhone(ContactID, PhoneNumberId) values(@ContactID, @PhoneNumberId); ";
                 db.SaveData(sql, new {ContactId = contactId, PhoneNumberId = phoneNumber.Id }, _connectionString);
-
             }
 
-            //same for email
+
+            foreach (var email in contact.EmailAddresses)
+            {
+                if (email.Id == 0)
+                {
+                    sql = "insert into dbo.EmailAddresses(EmailAddress) values(@EmailAddress); ";
+                    db.SaveData(sql, new { email.EmailAddress }, _connectionString);
+
+                    sql = "select Id from dbo.EmailAddresses where EmailAddress = @EmailAddress;";
+                    email.Id = db.LoadData<IdLookUpModel, dynamic>
+                        (sql, new { email.EmailAddress },
+                        _connectionString).First().Id;
+                }
+
+                sql = "insert into dbo.ContactEmail(ContactID, EmailAddressId) values(@ContactID, @EmailAddressId); ";
+                db.SaveData(sql, new { ContactId = contactId, EmailAddressId = email.Id }, _connectionString);
+            }
+
         }
     }       
 }
