@@ -12,13 +12,34 @@ internal class Program
 
         //ReadAllContacts(sql);
 
-        ReadContact(sql, 3);
+        //ReadContact(sql, 3);
+
         //CreateNewContact(sql);
 
+        //UpdateContact(sql);
+
+        RemovePhoneNumberFromContact(sql, 3, 1004);
 
         Console.ReadLine();
 
 
+    }
+
+    private static void RemovePhoneNumberFromContact(SqlCrud sql, int contactId, int phoneNumberId)
+    {
+        sql.RemovePhoneNumberFromContact(contactId, phoneNumberId);
+    }
+
+    private static void UpdateContact(SqlCrud sql)
+    {
+        BasicContactModel contact = new BasicContactModel
+        {
+            Id = 1,
+            FirstName = "Naomi",
+            LastName = "Peren"
+        };
+
+        sql.UpdateContactName(contact);
     }
 
     private static void CreateNewContact(SqlCrud sql)
