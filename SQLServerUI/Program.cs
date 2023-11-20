@@ -20,6 +20,9 @@ internal class Program
 
         RemovePhoneNumberFromContact(sql, 3, 1004);
 
+        Console.WriteLine("Done processing Sql Server");
+
+
         Console.ReadLine();
 
 

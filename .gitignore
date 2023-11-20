@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /SQLServerUI/appsettings.json
+/SqlLiteUI/appsettings.json
+/SQLiteUI/appsettings.json
+/.gitignore
