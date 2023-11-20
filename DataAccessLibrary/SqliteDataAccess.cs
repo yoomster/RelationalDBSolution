@@ -29,15 +29,3 @@ namespace DataAccessLibrary
         }
     }
 }
-
-
-//		sqlStatement	"insert into PhoneNumbers(PhoneNumber) values(@PhoneNumber); "	string
-//	DataAccessLibrary.dll!DataAccessLibrary.SqliteDataAccess.SaveData<<>f__AnonymousType3<string>>(string sqlStatement, <>f__AnonymousType3<string> parameters, string connectionString) Line 24	C#
-// 	DataAccessLibrary.dll!DataAccessLibrary.SqliteCrud.CreateContact(DataAccessLibrary.Models.FullContactModel contact) Line 75	C#
-// 	SQLiteUI.dll!SqliteUI.Program.CreateNewContact(DataAccessLibrary.SqliteCrud sql) Line 69	C#
-// 	SQLiteUI.dll!SqliteUI.Program.Main(string[] args) Line 21	C#
-//insert into PhoneNumbers(PhoneNumber) values(@PhoneNumber);
-
-
-
-  //  <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />

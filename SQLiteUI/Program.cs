@@ -19,9 +19,10 @@ namespace SqliteUI
             //ReadContact(sql, 13);
 
             //CreateNewContact(sql);
+            //ReadAllContacts(sql);
 
             //UpdateContact(sql);
-            //ReadAllContacts(sql);
+
 
 
             RemovePhoneNumberFromContact(sql, 1, 1);
@@ -30,8 +31,6 @@ namespace SqliteUI
             Console.WriteLine("Done processing Sqlite");
 
             Console.ReadLine();
-
-            //22.22
 
         }
         private static void RemovePhoneNumberFromContact(SqliteCrud sql, int contactId, int phoneNumberId)
@@ -63,11 +62,9 @@ namespace SqliteUI
             };
 
             user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "me@perenboom.nl" });
-            //user.EmailAddresses.Add(new EmailAddressModel { Id = 10, EmailAddress = "me@adam.nl" });
 
 
             user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
-            //user.PhoneNumbers.Add(new PhoneNumberModel { Id = 9, PhoneNumber = "04911111111" });
 
             sql.CreateContact(user);
         }
