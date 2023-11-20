@@ -117,7 +117,7 @@ namespace DataAccessLibrary
                 _connectionString);
 
             sql = "delete from dbo.ContactPhone where PhoneNumberId = @PhoneNumberId and ContactId= @ContactId;";
-            db.SaveData(sql, new { PhoneNumberId = phoneNumberId, ContactId = contactId },
+            db.SaveData(sql, new { PhoneNumberId = phoneNumberId, ContactID = contactId },
                 _connectionString );
 
             if (links.Count == 1)
@@ -129,7 +129,6 @@ namespace DataAccessLibrary
         }
 
     }
-    //Id, PhoneNumber
 
 
 }
