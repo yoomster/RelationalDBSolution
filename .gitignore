@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /SqlLiteUI/appsettings.json
 /SQLiteUI/appsettings.json
 /.gitignore
+/MySqlUI/appsettings.json
