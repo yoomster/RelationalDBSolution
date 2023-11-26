@@ -12,7 +12,7 @@ namespace MySqlUI
     {
         static void Main(string[] args)
         {
-            //MySqlCrud sql = new MySqlCrud(GetConnectionString());
+            MySqlCrud sql = new MySqlCrud(GetConnectionString());
 
             //ReadAllContacts(sql);
 
