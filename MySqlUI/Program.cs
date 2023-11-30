@@ -16,15 +16,16 @@ namespace MySqlUI
 
             //ReadAllContacts(sql);
 
-            //ReadContact(sql, 13);
+
 
             //CreateNewContact(sql);
             //ReadAllContacts(sql);
 
             //UpdateContact(sql);
+            //ReadContact(sql, 2);
 
-
-            //RemovePhoneNumberFromContact(sql, 1, 1);
+            RemovePhoneNumberFromContact(sql, 1, 1);
+            ReadContact(sql, 1);
 
 
             Console.WriteLine("Done processing MySql");
@@ -41,9 +42,9 @@ namespace MySqlUI
         {
             BasicContactModel contact = new BasicContactModel
             {
-                Id = 1,
-                FirstName = "Nayoomi",
-                LastName = "Peeer"
+                Id = 2,
+                FirstName = "Adam",
+                LastName = "Akii"
             };
 
             sql.UpdateContactName(contact);
